@@ -2,7 +2,6 @@ streamlit
 numpy
 pandas
 requests
-io
 openai
 scipy
 ast
