@@ -34,7 +34,7 @@ st.write("Background: The AMA guidelines for selecting level of service based on
 "diagnoses, assessing the status of a condition, and/or selecting a management option. " \
 "MDM is defined by three elements: the number and complexity of problem(s) that are addressed during the encounter, " \
 "the amount and/or complexity of data to be reviewed and analyzed, " \
-"the risk of complications and/or morbidity or martality of patient management. "\
+"the risk of complications and/or morbidity or mortality of patient management. "\
 "Based on inputed text, this app will output be the most 'likely' complexity of the problem. " \
 "Other features to come soon!")
 input_text = st.text_input("Input text to be analyzed:")
@@ -51,5 +51,6 @@ if calc == True:
     problem = df.at[min_index,"Problem"]
 
     st.write("Problem is: " + problem) 
+
 
 
