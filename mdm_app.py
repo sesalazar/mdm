@@ -30,7 +30,13 @@ df = load_original_csv(raw_url)
 
 #building UI
 st.write("### Problem Identifier")
-st.write("##### Based on inputed text, output will be the most 'likely' problem.")
+st.write("###### Background: The AMA guidelines for selecting level of service based on medical decision making (MDM) includes establishing " \
+"diagnoses, assessing the status of a condition, and/or selecting a management option. " \
+"MDM is defined by three elements: the number and complexity of problem(s) that are addressed during the encounter, " \
+"the amount and/or complexity of data to be reviewed and analyzed, " \
+"the risk of complications and/or morbidity or martality of patient management. "\
+"Based on inputed text, this app will output be the most 'likely' complexity of the problem. " \
+"Other features to come soon!")
 input_text = st.text_input("Input text to be analyzed:")
 calc = st.button("Analyze")
 
@@ -43,4 +49,5 @@ if calc == True:
         x.append(distance.euclidean(input_embedding,i))
     min_index = x.index(min(x))
     problem = df.at[min_index,"Problem"]
+
     st.write("Problem is: " + problem) 
