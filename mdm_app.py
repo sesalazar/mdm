@@ -8,7 +8,7 @@ from scipy.spatial import distance
 from ast import literal_eval
 
 client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
-raw_url = "https://raw.githubusercontent.com/sesalazar/files/refs/heads/main/problemdefinitionembeddings_v2.csv"
+raw_url = "https://raw.githubusercontent.com/sesalazar/files/refs/heads/main/prob_embeddings_v3.csv"
 
 @st.cache_resource
 def get_client():
@@ -42,15 +42,16 @@ calc = st.button("Analyze")
 
 #back end calculations
 input_embedding = get_embedding(input_text)
-matrix = np.array(df.DefinitionEmbeddings.apply(literal_eval).to_list())
+matrix = np.array(df.Embeddings.apply(literal_eval).to_list())
 x = []
 if calc == True:
     for i in matrix:
-        x.append(distance.euclidean(input_embedding,i))
+        x.append(distance.cosine(input_embedding,i))
     min_index = x.index(min(x))
     problem = df.at[min_index,"Problem"]
 
     st.write("Problem is: " + problem) 
+
 
 
 
