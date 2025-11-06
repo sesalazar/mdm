@@ -26,7 +26,7 @@ def get_embedding(text):                                                        
     return client.embeddings.create(input=edited_text, model="text-embedding-3-small").data[0].embedding
 
 st.set_page_config(page_title="CPT Problems for MDM")
-df = load_original_csv(raw_url)
+df_prob = load_original_csv(raw_url)
 
 #building UI
 st.write("### Problem Complexity Identifier")
@@ -42,15 +42,20 @@ calc = st.button("Analyze")
 
 #back end calculations
 input_embedding = get_embedding(input_text)
-matrix = np.array(df.Embeddings.apply(literal_eval).to_list())
+matrix = np.array(df_prob.Embeddings.apply(literal_eval).to_list())
 x = []
 if calc == True:
     for i in matrix:
         x.append(distance.cosine(input_embedding,i))
     min_index = x.index(min(x))
-    problem = df.at[min_index,"Problem"]
-
+    problem = df_prob.at[min_index,"Problem"]
     st.write("Problem is: " + problem) 
+    if problem == df_prob.at[0,"Problem"]:
+        MDM_level = "Straightforward"
+        CPT_code = "99202 or 99212"
+        st.write("Level of MDM: " + MDM_level)
+        st.write("CPT Code: " + CPT_code)
+
 
 
 
