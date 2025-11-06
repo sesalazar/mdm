@@ -55,6 +55,11 @@ if calc == True:
         CPT_code = "99202 or 99212"
         st.write("Level of MDM: " + MDM_level)
         st.write("CPT Code: " + CPT_code)
+    if problem == df_prob.at[7,"Problem"] or problem == df_prob.at[8,"Problem"]:
+        MDM_level = "High"
+        CPT_code = "99205 or 99215"
+        st.write("Level of MDM: " + MDM_level)
+        st.write("CPT Code: " + CPT_code)
 
 
 
